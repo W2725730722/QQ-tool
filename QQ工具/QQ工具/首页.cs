@@ -15,7 +15,9 @@ namespace QQ工具
             InitializeComponent();
         }
 
+
         群 qun = new 群();
+        群成员 quns = new 群成员();
         Web web = new Web();
         账号 账号 = new 账号();
 
@@ -30,11 +32,22 @@ namespace QQ工具
                 materialLabel2.Text = 账号.qq;
                 pictureBox1.Image = Image.FromFile("pic/" + 账号.qq + ".jpg");
 
-                List<Group> group = qun.GetQunList();
-                foreach (Group item in group)
+                object[] quns = qun.GetQunList();
+                List<Join> join = (List<Join>)quns[0];
+                List<Create> create = (List<Create>)quns[1];
+                
+                foreach (Join item in join)
                 {
-                    ListViewItem items = new ListViewItem(item.groupname);
-                    items.SubItems.Add(item.groupid + "");
+                    ListViewItem items = new ListViewItem(item.gn.Replace("&nbsp;"," "));
+                    items.SubItems.Add(item.gc);
+                    items.Group = materialListView1.Groups[0];
+                    materialListView1.Items.Add(items);
+                }
+                foreach (Create item in create)
+                {
+                    ListViewItem items = new ListViewItem(item.gn.Replace("&nbsp;"," "));
+                    items.SubItems.Add(item.gc);
+                    items.Group = materialListView1.Groups[1];
                     materialListView1.Items.Add(items);
                 }
             }
@@ -55,7 +68,7 @@ namespace QQ工具
             {
                 foreach (string id in list)
                 {
-                    string data = "bkn=" + 账号.GetBkn() + "&template_data=&gallery_info={\"category_id\":9,\"page\":0,\"pic_id\":1}&template_id=2&gc=" + id + "&client=2&lgt=0&lat=0&poi="+web.toUtf8("火星")+"&pic_id=&text="+web.toUtf8("签到");
+                    string data = "bkn=" + 账号.GetBkn() + "&template_data=&gallery_info={\"category_id\":9,\"page\":0,\"pic_id\":195}&template_id=2&gc=" + id + "&client=2&lgt=0&lat=0&poi="+web.toUtf8("M78星云")+"&pic_id=&text="+web.toUtf8("签到");
                     string xml = web.SendDataByPost("http://qun.qq.com/cgi-bin/qiandao/sign/publish", data, 账号.cookie)["XML"];
                 }
                 list.Clear();
@@ -85,6 +98,12 @@ namespace QQ工具
             {
                 materialListView1.Items[i].Selected = !materialListView1.Items[i].Selected;
             }
+        }
+
+        private void 群成员ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string id = materialListView1.SelectedItems[0].SubItems[1].Text;
+            new 群成员管理(id).ShowDialog();
         }
     }
 }

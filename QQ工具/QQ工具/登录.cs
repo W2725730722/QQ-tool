@@ -12,9 +12,9 @@ namespace QQ工具
 
         private void webBrowser1_Navigated(object sender, WebBrowserNavigatedEventArgs e)
         {
-            if (webBrowser1.Url.ToString().IndexOf("user.qzone.qq.com") > -1)
+            if (webBrowser1.Url.ToString().IndexOf("https://qun.qq.com/") == 0)
             {
-                账号.cookie = Web.GetCookieString("https://user.qzone.qq.com");
+                账号.cookie = Web.GetCookieString("https://qun.qq.com/");
                 Close();
             }
         }

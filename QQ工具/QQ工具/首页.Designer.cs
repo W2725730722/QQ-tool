@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("创建的群", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("加入的群", System.Windows.Forms.HorizontalAlignment.Left);
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
@@ -43,6 +45,7 @@
             this.全选ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.全不选ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.反选ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.群成员ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
             this.materialTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -128,7 +131,6 @@
             // materialListView1
             // 
             this.materialListView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.materialListView1.CheckBoxes = true;
             this.materialListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2});
@@ -137,13 +139,21 @@
             this.materialListView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialListView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
             this.materialListView1.FullRowSelect = true;
+            listViewGroup1.Header = "创建的群";
+            listViewGroup1.Name = "a";
+            listViewGroup2.Header = "加入的群";
+            listViewGroup2.Name = "b";
+            this.materialListView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            listViewGroup1,
+            listViewGroup2});
             this.materialListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.materialListView1.LabelWrap = false;
             this.materialListView1.Location = new System.Drawing.Point(3, 3);
             this.materialListView1.MouseLocation = new System.Drawing.Point(-1, -1);
             this.materialListView1.MouseState = MaterialSkin.MouseState.OUT;
             this.materialListView1.Name = "materialListView1";
             this.materialListView1.OwnerDraw = true;
-            this.materialListView1.ShowGroups = false;
+            this.materialListView1.Scrollable = false;
             this.materialListView1.Size = new System.Drawing.Size(823, 360);
             this.materialListView1.TabIndex = 0;
             this.materialListView1.UseCompatibleStateImageBehavior = false;
@@ -157,7 +167,7 @@
             // columnHeader2
             // 
             this.columnHeader2.Text = "群号";
-            this.columnHeader2.Width = 700;
+            this.columnHeader2.Width = 2000;
             // 
             // materialContextMenuStrip1
             // 
@@ -165,15 +175,16 @@
             this.materialContextMenuStrip1.Depth = 0;
             this.materialContextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.签到ToolStripMenuItem,
-            this.选择ToolStripMenuItem});
+            this.选择ToolStripMenuItem,
+            this.群成员ToolStripMenuItem});
             this.materialContextMenuStrip1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialContextMenuStrip1.Name = "materialContextMenuStrip1";
-            this.materialContextMenuStrip1.Size = new System.Drawing.Size(101, 48);
+            this.materialContextMenuStrip1.Size = new System.Drawing.Size(113, 70);
             // 
             // 签到ToolStripMenuItem
             // 
             this.签到ToolStripMenuItem.Name = "签到ToolStripMenuItem";
-            this.签到ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.签到ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.签到ToolStripMenuItem.Text = "签到";
             this.签到ToolStripMenuItem.Click += new System.EventHandler(this.签到ToolStripMenuItem_Click);
             // 
@@ -184,7 +195,7 @@
             this.全不选ToolStripMenuItem,
             this.反选ToolStripMenuItem});
             this.选择ToolStripMenuItem.Name = "选择ToolStripMenuItem";
-            this.选择ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.选择ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.选择ToolStripMenuItem.Text = "选择";
             // 
             // 全选ToolStripMenuItem
@@ -207,6 +218,13 @@
             this.反选ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.反选ToolStripMenuItem.Text = "反选";
             this.反选ToolStripMenuItem.Click += new System.EventHandler(this.反选ToolStripMenuItem_Click);
+            // 
+            // 群成员ToolStripMenuItem
+            // 
+            this.群成员ToolStripMenuItem.Name = "群成员ToolStripMenuItem";
+            this.群成员ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.群成员ToolStripMenuItem.Text = "群成员";
+            this.群成员ToolStripMenuItem.Click += new System.EventHandler(this.群成员ToolStripMenuItem_Click);
             // 
             // materialTabSelector1
             // 
@@ -261,6 +279,7 @@
         private System.Windows.Forms.ToolStripMenuItem 全选ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 全不选ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 反选ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 群成员ToolStripMenuItem;
     }
 }
 

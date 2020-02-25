@@ -5,43 +5,64 @@ namespace QQ工具
 {
     public class 群
     {
-        public List<Group> GetQunList()
+        public object[] GetQunList()
         {
             账号 zh = new 账号();
-            string json = new Web().SendDataByPost("http://qun.qzone.qq.com/cgi-bin/get_group_list", "uin=" + zh.qq + "&g_tk=" + zh.GetBkn(), 账号.cookie)["XML"];
-            json = json.Replace("_Callback(", "");
-            json = json.Replace(");", "");
-            
-            Root root = JsonConvert.DeserializeObject<Root>(json);
-            return root.data.group;
-        }
+            string json = new Web().SendDataByPost("https://qun.qq.com/cgi-bin/qun_mgr/get_group_list", "bkn=" + new 账号().GetBkn(), 账号.cookie)["XML"];
 
-        public class Group
+            Root root = JsonConvert.DeserializeObject<Root>(json);
+
+            object[] quns = { root.join, root.create };
+
+            return quns;
+        }
+        
+        #region 实体类
+        public class Join
         {
             /// <summary>
             /// 群号
             /// </summary>
-            public int groupid { get; set; }
+            public string gc { get; set; }
             /// <summary>
             /// 群名
             /// </summary>
-            public string groupname { get; set; }
+            public string gn { get; set; }
+            /// <summary>
+            /// 群主qq
+            /// </summary>
+            public string owner { get; set; }
         }
 
-        public class Data
+        public class Create
         {
             /// <summary>
-            /// 群列表
+            /// 群号
             /// </summary>
-            public List<Group> group { get; set; }
+            public string gc { get; set; }
+            /// <summary>
+            /// 群名
+            /// </summary>
+            public string gn { get; set; }
+            /// <summary>
+            /// 群主qq
+            /// </summary>
+            public string owner { get; set; }
         }
 
         public class Root
         {
             /// <summary>
-            /// 数据
+            /// 加入的群
             /// </summary>
-            public Data data { get; set; }
+            public List<Join> join { get; set; }
+            /// <summary>
+            /// 创建的群
+            /// </summary>
+            public List<Create> create { get; set; }
         }
+
+        #endregion
+
     }
 }

@@ -5,14 +5,14 @@ namespace QQ工具
     public class 账号
     {
         public static string cookie = "";
-        public string qq = "10001";
-        public string name = "李四";
+        public static string qq = "10001";
+        public static string name = "李四";
 
         Web web = new Web();
 
         public void Initialization_Data()
         {
-            qq = web.GetDate(cookie, "uin_cookie");
+            qq = web.GetDate(cookie, "ptui_loginuin");
             name = GetName();
             GetPic();
         }

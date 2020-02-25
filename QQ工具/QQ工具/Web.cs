@@ -70,7 +70,7 @@ namespace QQ工具
             string temp2 = cookie.GetCookieHeader(new Uri(Url));
 
             Dictionary<string, string> dr = new Dictionary<string, string>();
-            dr.Add("COOKIE", temp2.Substring(11, temp2.Length - 11));
+            dr.Add("COOKIE", temp2);
             dr.Add("XML", retString);
             return dr;
         }
@@ -112,7 +112,7 @@ namespace QQ工具
             string temp = cookie.GetCookieHeader(new Uri(Url));
 
             Dictionary<string, string> dr = new Dictionary<string, string>();
-            dr.Add("COOKIE", temp.Substring(12, temp.Length - 12));
+            dr.Add("COOKIE", temp);
             dr.Add("XML", retString);
 
             return dr;
