@@ -12,7 +12,7 @@ namespace QQ工具
 
         public void Initialization_Data()
         {
-            qq = web.GetDate(cookie, "ptui_loginuin");
+            qq = web.GetDate(cookie, "uin_cookie");
             name = GetName();
             GetPic();
         }
